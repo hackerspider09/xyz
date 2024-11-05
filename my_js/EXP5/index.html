@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXP5</title>
+</head>
+<body>
+    <div>
+        <h1>Countdown Timer</h1>
+        <h1>Name : prasad khatake</h1>
+        <h1>Batch : S7</h1>
+      </div>
+    <div>
+        <input type="datetime-local" id="futureDate">
+        <br>
+        <br>
+        <button onclick="startTimer()">Start CountDown</button>
+    </div>
+    <div>
+        <h3>Remaining Time: <span id="countdown"></span></h3>
+    </div>
+
+    <script>
+        function startTimer() {
+
+            let countdown = document.getElementById("countdown");
+            let timer = setInterval(function () {
+                let reqDate = new Date(document.getElementById("futureDate").value);
+                if (isNaN(reqDate.getTime())) {
+                    alert("Please select a valid date and time.");
+                    clearInterval(timer);
+                    return;
+                }
+                let curntDate = new Date();
+                let timeDiff = reqDate - curntDate;
+
+                if (timeDiff <= 0) {
+                    clearInterval(timer);
+                    countdown.innerText = "Time is Over!";
+                    return;
+                }
+
+                let days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                let hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+                countdown.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

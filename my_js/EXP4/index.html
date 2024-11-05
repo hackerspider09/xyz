@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXP4</title>
+</head>
+<body>
+    <div>
+        <h1>String comparison</h1>
+        <h1>Name : prasad khatake</h1>
+        <h1>Batch : S7</h1>
+      </div>
+    <div>
+        <input type="text" placeholder="String 1" id="string1">
+        <br>
+        <br>
+        <input type="text" placeholder="String 2" id="string2">
+        <br>
+        <br>
+
+        <button onclick="compareFunc()">Compare string</button>
+    </div>
+    <div>
+        <p>Comparison parameters:</p>
+        <p>Length comparison :> <span id="lenP"></span></p>
+        <p>Strict equality === :> <span id="strictE"></span></p>
+        <p>Loose equality == :> <span id="normalE"></span></p>
+        <p>Locale comparison :> <span id="localC"></span></p>
+        <p>Custom function :> <span id="customeC"></span></p>
+    </div>
+
+    <script>
+        function compareFunc() {
+            let str1 = document.getElementById("string1").value;
+            let str2 = document.getElementById("string2").value;
+            
+            lenP(str1, str2);
+            strictE(str1, str2);
+            normalE(str1, str2);
+            localC(str1, str2);
+            customeC(str1, str2);
+        }
+
+        function lenP(str1, str2) {
+            let op = str1.length === str2.length;
+            document.getElementById("lenP").innerText = op ? "Length is the same" : "Length is not the same";
+        }
+
+        function strictE(str1, str2) {
+            let op = str1 === str2;
+            document.getElementById("strictE").innerText = op ? "Strings are strictly equal" : "Strings are not strictly equal";
+        }
+
+        function normalE(str1, str2) {
+            let op = str1 == str2;
+            document.getElementById("normalE").innerText = op ? "Strings are equal" : "Strings are not equal";
+        }
+
+        function localC(str1, str2) {
+            let op = str1.localeCompare(str2);
+            document.getElementById("localC").innerText = op === 0 ? "Strings are equal" : "Strings are not equal";
+        }
+
+        function customeC(str1, str2) {
+            let op = str1.toLowerCase() === str2.toLowerCase();
+            if(str1.length != str2.length){
+                document.getElementById("customeC").innerText = "Strings are not equal";
+                return;
+            }
+            
+            for (let index = 0; index < str1.length; index++) {
+                if (str1[index]!=str2[index]) {
+                    document.getElementById("customeC").innerText = "Strings are not equal";
+                    return;
+                }
+            }
+            document.getElementById("customeC").innerText =   "Strings are equal";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Array of Objects</title>
+</head>
+<body>
+  <div id="info">
+    <p><b>Name :</b> Prasad Khatake</p>
+    <p><b>Roll no. :</b> 42336</p>
+  </div>
+
+  <div>
+    <h1>Array of Objects</h1>
+    
+    <!-- Input for array size -->
+    <label for="arraySize">Enter the size of the Array:</label>
+    <input type="number" id="arraySize" placeholder="Size of the Array" />
+    <br /><br />
+
+    <!-- Input for object to add -->
+    <label for="addObject">Enter the Object:</label>
+    <input type="text" id="addObject" placeholder="Enter Object" />
+    <button onclick="addToArray()">Add</button>
+
+    <!-- Display the array -->
+    <h3>Current Array:</h3>
+    <p id="arrayDisplay"></p>
+
+    <!-- Input for checking the object at a specific index -->
+    <label for="checkObject">Find Array in the Array of Object:</label>
+    <input type="number" id="checkObject" placeholder="Enter Index of the Array" />
+    <button onclick="checkObject()">Check</button>
+    <p id="array"></p>
+  </div>
+
+  <!-- JavaScript code -->
+  <script>
+    let arr = [];
+
+    function addToArray() {
+      const n = parseInt(document.getElementById("arraySize").value);
+      const element = document.getElementById("addObject").value;
+
+      if (arr.length < n) {
+        arr.push(element);
+        document.getElementById("arrayDisplay").innerText = `Array: ${JSON.stringify(arr)}`;
+      } else {
+        document.getElementById("arrayDisplay").innerText = `Array is Filled`;
+      }
+    }
+
+    function checkObject() {
+      const index = parseInt(document.getElementById("checkObject").value);
+      const size = parseInt(document.getElementById("arraySize").value);
+
+      if (index >= size || index < 0) {
+        document.getElementById("array").innerText = `Index out of Bound`;
+      } else {
+        const val = arr[index];
+        try {
+          const parsedVal = JSON.parse(val);
+          document.getElementById("array").innerText = Array.isArray(parsedVal)
+            ? `Value at ${index} is an Array`
+            : `Value at ${index} is not an Array`;
+        } catch (e) {
+          document.getElementById("array").innerText = `Value at ${index} is not a valid JSON object`;
+        }
+      }
+    }
+  </script>
+</body>
+</html>

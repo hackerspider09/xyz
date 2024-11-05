@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXP6</title>
+</head>
+<body>
+    <div>
+        <h1>Array Operations</h1>
+        <h1>Name : prasad khatake</h1>
+        <h1>Batch : S7</h1>
+      </div>
+    
+    <div>
+        <label>Enter array size:</label>
+        <input type="number" id="arraySize" min="1" placeholder="Enter array size"><br><br>
+
+        <label>Enter array elements (space separated):</label>
+        <input type="text" id="arrayElements" placeholder="Enter array elements"><br><br>
+
+        <label>Enter element for operations:</label>
+        <input type="number" id="deleteElement" placeholder="Enter element to delete or check"><br><br>
+
+        <button onclick="initializeArray()">Initialize Array</button>
+        <button onclick="deleteElement()">Delete Element</button>
+        <button onclick="checkElement()">Check Element</button>
+        <button onclick="emptyArray()">Empty Array</button>
+    </div>
+
+    <div>
+        <h4>Array:</h4>
+        <p id="arrayDisplay">[]</p>
+    </div>
+
+    <div>
+        <h4>Operation Result:</h4>
+        <p id="operationResult"></p>
+    </div>a
+
+    <script>
+        let array = [];
+
+        function initializeArray() {
+            let size = parseInt(document.getElementById("arraySize").value);
+            let elements = document.getElementById("arrayElements").value.trim().split(" ").map(Number);
+
+            if (isNaN(size) || elements.length !== size || elements.some(isNaN)) {
+                document.getElementById("operationResult").innerText = "Please enter valid array size and elements.";
+                return;
+            }
+
+            array = elements;
+            document.getElementById("arrayDisplay").innerText = JSON.stringify(array);
+            document.getElementById("operationResult").innerText = "Array initialized successfully.";
+        }
+
+        function deleteElement() {
+            let element = parseInt(document.getElementById("deleteElement").value);
+
+            if (isNaN(element)) {
+                document.getElementById("operationResult").innerText = "Please enter a valid element to delete.";
+                return;
+            }
+
+            let index = array.indexOf(element);
+            if (index > -1) {
+                array.splice(index, 1);
+                document.getElementById("operationResult").innerText = "Element deleted successfully.";
+            } else {
+                document.getElementById("operationResult").innerText = "Element not found.";
+            }
+
+            document.getElementById("arrayDisplay").innerText = JSON.stringify(array);
+        }
+
+        function checkElement() {
+            let element = parseInt(document.getElementById("deleteElement").value);
+
+            if (isNaN(element)) {
+                document.getElementById("operationResult").innerText = "Please enter a valid element.";
+                return;
+            }
+
+            let exists = array.includes(element);
+            document.getElementById("operationResult").innerText = exists ? "Element is present." : "Element is not present.";
+        }
+
+        function emptyArray() {
+            array = [];
+            document.getElementById("arrayDisplay").innerText = "[]";
+            document.getElementById("operationResult").innerText = "Array emptied successfully.";
+        }
+    </script>
+</body>
+</html>

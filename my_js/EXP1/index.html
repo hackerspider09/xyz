@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXP1</title>
+    <script src="scripts.js" defer></script>
+  </head>
+  <body>
+    <div>
+      <h1>Area Calculation</h1>
+      <h1>Name : prasad khatake</h1>
+      <h1>Batch : S7</h1>
+    </div>
+    <div>
+      <div>
+        <h2>Triangle Area</h2>
+        <label for="a">Side a: </label
+        ><input type="number" id="a" placeholder="Side A" /><br /><br />
+        <label for="b">Side b: </label
+        ><input type="number" id="b" placeholder="Side B" /><br /><br />
+        <label for="c">Side c: </label
+        ><input type="number" id="c" placeholder="Side C" /><br /><br />
+        <button onclick="calculateTriangleArea()">
+          Calculate Triangle Area
+        </button>
+        <p id="triangleRes"></p>
+      </div>
+      <hr />
+      <div>
+        <h2>Rectangle Area</h2>
+        <label for="length">Length: </label>
+        <input type="number" id="length" placeholder="Length" /><br /><br />
+        <label for="width">Width: </label>
+        <input type="number" id="width" placeholder="Width" /><br /><br />
+        <button onclick="calculateRectangleArea()">
+          Calculate Rectangle Area
+        </button>
+        <p id="rectangleRes"></p>
+      </div>
+      <hr />
+      <div>
+        <h2>Circle Area</h2>
+        <label for="radius">Radius: </label>
+        <input type="number" id="radius" placeholder="Radius" /><br /><br />
+        <button onclick="calculateCircleArea()">Calculate Circle Area</button>
+        <p id="circleRes"></p>
+      </div>
+    </div>
+  </body>
+</html>

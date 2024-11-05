@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXP3</title>
+</head>
+<body>
+    <div>
+        <h1>String operation</h1>
+        <h1>Name : prasad khatake</h1>
+        <h1>Batch : S7</h1>
+      </div>
+    <div>
+        <input type="text" placeholder="Enter string" id="input1">
+        <br>
+        <br>
+        <div>
+            <button id="rev" onclick="revstring()">Reverse String</button>
+            <br>
+            <br>
+            <button id="palin" onclick="pallindrome()">Check Palindrome</button>
+            <br>
+            <br>
+            <div>
+                <input type="text" placeholder="Enter char to replace" id="char1">
+                <input type="text" placeholder="New char" id="char2">
+                <button id="repl" onclick="replaceChar()">Replace Char</button> 
+            </div>
+        </div>
+    </div>
+    <div id="opBlock">
+
+    </div>
+
+
+    <script>
+        function revstring() {
+            let str = document.getElementById("input1").value;
+            let newStr = "";
+
+            for(let i=str.length-1;i>=0;i--){
+                newStr += str[i];
+            }
+
+            let op = `<h1>Reverse String : ${newStr}</h1>`;
+            document.getElementById("opBlock").innerHTML = op;
+        }
+
+
+        function pallindrome() {
+            let str = document.getElementById("input1").value;
+            let i=0;
+            let j = str.length -1;
+
+            let op =  `<h1>${str} is Palindrome </h1>`;
+
+            while (i<=j) {
+                if(str[i]!=str[j]){
+                    op = `<h1>${str} is not Palindrome </h1>`;
+                    break;
+                }
+                i++;
+                j--;
+            }
+            document.getElementById("opBlock").innerHTML = op;
+        }
+
+
+        function replaceChar() {
+            let str = document.getElementById("input1").value;
+            let ch1 = document.getElementById("char1").value;
+            let ch2 = document.getElementById("char2").value;
+            let newStr = "";
+
+            for(let i=0;i<str.length;i++){
+                if(str[i]===ch1){
+                    newStr += ch2;
+                    continue;
+                }
+                newStr += str[i];
+            }
+
+            let op = `<h1>New String is : ${newStr}</h1>`;
+            document.getElementById("opBlock").innerHTML = op;
+
+        }
+
+
+
+    </script>
+</body>
+</html>

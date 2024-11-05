@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXP7</title>
+
+</head>
+<body>
+    <div>
+        <h1>Array and Object Operations</h1>
+        <h1>Name : prasad khatake</h1>
+        <h1>Batch : S7</h1>
+      </div>
+    <div>
+        <h2>1. Set Size of Array</h2>
+        <label for="arraySize">Enter size:</label>
+        <input type="number" id="arraySize" placeholder="Size of the array">
+        <button onclick="setArraySize()">Set Size</button>
+        <div id="sizeResult" class="result"></div>
+    </div>
+
+    <div>
+        <h2>2. Add Element to Array</h2>
+        <label for="addElement">Enter element:</label>
+        <input type="text" id="addElement" placeholder="Element to add">
+        <button onclick="addElementToArray()">Add Element</button>
+        <div id="addElementResult" class="result"></div>
+    </div>
+
+    <div>
+        <h2>3. Create List from space-Separated Values</h2>
+        <label for="spaceValues">Enter space-separated values:</label>
+        <input type="text" id="spaceValues" placeholder="e.g. apple banana cherry">
+        <button onclick="createListFromValues()">Create List</button>
+        <div id="listResult" class="result"></div>
+    </div>
+
+    <div>
+        <h2>4. Create Object and Add to Array</h2>
+        <label for="objectKey">Enter object key:</label>
+        <input type="text" id="objectKey" placeholder="Key">
+        <label for="objectValue">Enter object value:</label>
+        <input type="text" id="objectValue" placeholder="Value">
+        <button onclick="createObject()">Create Object</button>
+        <div id="objectResult" class="result"></div>
+    </div>
+
+    <div>
+        <h2>5. Check Last Element Type</h2>
+        <button onclick="checkLastElementType()">Check Last Element</button>
+        <div id="lastElementTypeResult" class="result"></div>
+    </div>
+
+    <div>
+        <h2>Main Array:</h2>
+        <div id="mainArrayResult" class="result"></div>
+    </div>
+
+    <script>
+        let mainArray = [];
+        let arraySize = 0;
+
+        function setArraySize() {
+            const size = document.getElementById("arraySize").value;
+            arraySize = parseInt(size);
+            mainArray = []; 
+            document.getElementById("sizeResult").innerText = `Array size set to ${arraySize}.`;
+            updateMainArrayDisplay();
+        }
+
+        function addElementToArray() {
+            const element = document.getElementById("addElement").value;
+            if (mainArray.length < arraySize) {
+                mainArray.push(element);
+                document.getElementById("addElementResult").innerText = `Element "${element}" added to the array.`;
+            } else {
+                document.getElementById("addElementResult").innerText = "Array size limit reached. Cannot add more elements.";
+            }
+            updateMainArrayDisplay();
+        }
+
+        function createListFromValues() {
+            const values = document.getElementById("spaceValues").value;
+            const list = values.split(" ").map(Number);
+            if (mainArray.length < arraySize) {
+                mainArray.push(list);
+                document.getElementById("listResult").innerText = `List created and added to the array: ${JSON.stringify(list)}`;
+            } else {
+                document.getElementById("listResult").innerText = "Array size limit reached. Cannot add more lists.";
+            }
+            updateMainArrayDisplay();
+        }
+
+        function createObject() {
+            const key = document.getElementById("objectKey").value;
+            const value = document.getElementById("objectValue").value;
+            const obj = { [key]: value };
+            if (mainArray.length < arraySize) {
+                mainArray.push(obj);
+                document.getElementById("objectResult").innerText = `Object created and added to the array: ${JSON.stringify(obj)}`;
+            } else {
+                document.getElementById("objectResult").innerText = "Array size limit reached. Cannot add more objects.";
+            }
+            updateMainArrayDisplay();
+        }
+
+        function checkLastElementType() {
+            const lastElement = mainArray[mainArray.length - 1];
+            const type = Array.isArray(lastElement) ? 'Array' : typeof lastElement;
+            document.getElementById("lastElementTypeResult").innerText = `Last element is a: ${type}`;
+        }
+
+        function updateMainArrayDisplay() {
+            document.getElementById("mainArrayResult").innerText = `Main Array: ${JSON.stringify(mainArray)}`;
+        }
+    </script>
+</body>
+</html>
