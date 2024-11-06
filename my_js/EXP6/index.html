@@ -43,7 +43,7 @@
 
         function initializeArray() {
             let size = parseInt(document.getElementById("arraySize").value);
-            let elements = document.getElementById("arrayElements").value.trim().split(" ").map(Number);
+            let elements = document.getElementById("arrayElements").value.trim().split(" ").map(x => parseInt(x));
 
             if (isNaN(size) || elements.length !== size || elements.some(isNaN)) {
                 document.getElementById("operationResult").innerText = "Please enter valid array size and elements.";
